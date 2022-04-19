@@ -31,7 +31,9 @@ if (strlen($_COOKIE['token']) === 0) {
     <section>
 
         <div>
-            <button>Create Article</button>
+            <button>
+                <a href="create.php"> Create Article </a>
+            </button>
         </div>
         <div>
             <button>Read Article</button>

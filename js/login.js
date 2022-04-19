@@ -1,3 +1,4 @@
+// Login Handler
 async function onClickHandler() {
   let username = document.getElementById("u_name").value;
   let password = document.getElementById("u_pass").value;
@@ -27,6 +28,7 @@ async function onClickHandler() {
   window.location = "home.php";
 }
 
+// Logout Handler
 async function onLogoutHandler() {
   console.log(document.cookie.split(";")[2]);
   logout_token_cookie = document.cookie.split(";")[2];
