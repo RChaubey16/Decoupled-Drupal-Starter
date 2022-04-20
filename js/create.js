@@ -1,6 +1,7 @@
 async function onCreateHandler() {
   username = document.cookie.split(";")[0].split("=")[1];
   csrf_token = document.cookie.split(";")[1].split("=")[1];
+  authorize_token = document.cookie.split(';')[3].split('=')[1]
 
   let title = document.getElementById("article_title").value;
   let summary = document.getElementById("article_summary").value;
@@ -10,12 +11,13 @@ async function onCreateHandler() {
   //   console.log(title, summary, body, image);
   //   console.log(document.cookie);
 
-  const auth_tokenData = await authorizeUser(username);
-  console.log(auth_tokenData);
+  // const auth_tokenData = await authorizeUser(username);
+  // console.log(auth_tokenData);
+  // document.cookie = "authorize_token" + auth_tokenData;
 
   const imageData = await uploadImage(
     image,
-    auth_tokenData.access_token,
+    authorize_token,
     csrf_token
   );
 
@@ -24,7 +26,7 @@ async function onCreateHandler() {
     summary,
     body,
     imageData,
-    auth_tokenData.access_token,
+    authorize_token,
     csrf_token
   );
 
@@ -116,7 +118,7 @@ async function uploadArticle(
     method: "POST",
     url: "http://localhost/drupal_movie/web/jsonapi/node/article",
     headers: {
-      Authorization: `Bearer ${auth_token}`,
+      Authentication: `Bearer ${auth_token}`,
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "POST, GET, OPTIONS, DELETE, PUT",
       "Access-Control-Allow-Headers":
@@ -127,5 +129,4 @@ async function uploadArticle(
     },
     data: reqBody,
   });
-
 }

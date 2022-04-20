@@ -36,14 +36,18 @@ if (strlen($_COOKIE['token']) === 0) {
             </button>
         </div>
         <div>
-            <button>Read Article</button>
+            <button>
+            <a href="read.php"> Read Article </a>
+            </button>
         </div>
         <div>
 
-            <button>Update Article</button>
+            <button><a href="update.php"> Update Article </a></button>
         </div>
         <div>
-            <button>Delete Article</button>
+            <button>
+                <a href="delete.php"> Delete Article </a>
+            </button>
 
         </div>
 
