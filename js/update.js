@@ -34,9 +34,7 @@ async function onUpdateHandler() {
     method: "PATCH",
     url: url,
     headers: {
-      Authorization: `Bearer ${auth_token}`,
       "Content-Type": "application/vnd.api+json",
-      Accept: "application/vnd.api+json",
       "X-CSRF-Token": csrf_token,
     },
     data: reqBody,

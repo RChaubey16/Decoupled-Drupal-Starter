@@ -9,8 +9,8 @@ async function onDeleteHandler(){
         method: 'DELETE',
         url: `http://localhost/drupal_movie/web/jsonapi/node/article/${uuid}`,
         headers: {
-            Authorization: `Bearer ${authorize_token}`,
-            // "X-CSRF-Token": csrf_token,
+            'Content-Type': 'application/vnd.api+json',
+            "X-CSRF-Token": csrf_token,
         }
     });
 }

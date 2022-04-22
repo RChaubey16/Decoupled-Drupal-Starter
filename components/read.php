@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,10 +14,18 @@
 
     <input type="submit" value="Submit" onclick="onReadHandler()" />
 
-    <div id = "article__list">
+    <div>
+        <input type="text" id="search__input" name="search__field" />
+
+        <input type="submit" value="Submit" onclick="onSearchHandler()" />
+    </div>
+
+
+    <div id="article__list">
 
     </div>
-    
+
+
     <script src="../js/read.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </body>

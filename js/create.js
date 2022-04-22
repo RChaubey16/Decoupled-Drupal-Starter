@@ -5,10 +5,10 @@ async function onCreateHandler() {
 
   let title = document.getElementById("article_title").value;
   let summary = document.getElementById("article_summary").value;
-  let body = document.getElementById("article_summary").value;
+  let body = document.getElementById("article_body").value;
   let image = document.getElementById("article_image").files[0];
 
-  //   console.log(title, summary, body, image);
+    console.log(title, summary, body, image);
   //   console.log(document.cookie);
 
   // const auth_tokenData = await authorizeUser(username);
@@ -30,9 +30,9 @@ async function onCreateHandler() {
     csrf_token
   );
 
-  title = "";
-  summary = "";
-  body = "";
+  title.value = "";
+  summary.value = "";
+  body.value = "";
 }
 
 // Getting authorize token - token generates every request, can be made better.
