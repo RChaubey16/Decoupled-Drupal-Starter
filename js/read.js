@@ -70,3 +70,38 @@ async function fetchImageofArticle(image_resource_link) {
   let imageData = await axios.get(image_resource_link);
   return imageData.data.data.attributes;
 }
+
+// search autocomplete
+async function onSearchChangeHandler(input_data){
+  console.log("searching");
+  let searchQuery = input_data;
+  console.log(searchQuery);
+
+  let filteredData = await axios.get(`http://localhost/drupal_movie/web/jsonapi/node/article?filter[title][condition][path]=title&filter[title][condition][operator]=STARTS_WITH&filter[title][condition][value]=${searchQuery}`);
+
+  console.log(filteredData.data.data.length);
+
+  if (searchQuery == "" || searchQuery == " ") {
+    let autocomplete = document.getElementById("read__autocomplete");
+    autocomplete.innerHTML = "";
+    return;
+  }
+
+  if (filteredData.data.data.length > 1){
+    let autocomplete = document.getElementById("read__autocomplete");
+    autocomplete.innerHTML = "";
+    for (let i = 0; i < filteredData.data.data.length; i++) {
+      let entity = `<p>${filteredData.data.data[i].attributes.title}</p>`;
+      autocomplete.style.border = '1px solid black';
+      autocomplete.innerHTML += entity;
+    }
+  } else {
+    let autocomplete = document.getElementById("read__autocomplete");
+    autocomplete.innerHTML = "";
+    let entity = `<p>${filteredData.data.data[0].attributes.title}</p>`;
+    autocomplete.style.border = '1px solid black';
+    autocomplete.innerHTML += entity;
+  }
+
+
+}

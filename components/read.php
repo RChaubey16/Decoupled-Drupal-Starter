@@ -15,7 +15,11 @@
     <input type="submit" value="Submit" onclick="onReadHandler()" />
 
     <div>
-        <input type="text" id="search__input" name="search__field" />
+        <input type="text" id="search__input" name="search__field" onkeypress="onSearchChangeHandler(this.value)" />
+
+        <div id = "read__autocomplete">
+
+        </div>
 
         <input type="submit" value="Submit" onclick="onSearchHandler()" />
     </div>
