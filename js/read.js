@@ -54,6 +54,7 @@ async function fetchArticleByUUID(node_uuid) {
     "http://localhost/drupal_movie/web/jsonapi/node/article/" + node_uuid
   );
 
+  console.log("ARTICLE", article);
   return article.data.data;
 }
 
@@ -79,7 +80,7 @@ async function onSearchChangeHandler(input_data){
 
   let filteredData = await axios.get(`http://localhost/drupal_movie/web/jsonapi/node/article?filter[title][condition][path]=title&filter[title][condition][operator]=STARTS_WITH&filter[title][condition][value]=${searchQuery}`);
 
-  console.log(filteredData.data.data.length);
+  console.log(filteredData.data.data[0].id);
 
   if (searchQuery == "" || searchQuery == " ") {
     let autocomplete = document.getElementById("read__autocomplete");
@@ -91,14 +92,16 @@ async function onSearchChangeHandler(input_data){
     let autocomplete = document.getElementById("read__autocomplete");
     autocomplete.innerHTML = "";
     for (let i = 0; i < filteredData.data.data.length; i++) {
-      let entity = `<p>${filteredData.data.data[i].attributes.title}</p>`;
+      // let entity = `<p>${filteredData.data.data[i].attributes.title}</p>`;
+      let entity = `<a href=article.php?${filteredData.data.data[i].id}>${filteredData.data.data[i].attributes.title}</a>`;
       autocomplete.style.border = '1px solid black';
       autocomplete.innerHTML += entity;
     }
   } else {
     let autocomplete = document.getElementById("read__autocomplete");
     autocomplete.innerHTML = "";
-    let entity = `<p>${filteredData.data.data[0].attributes.title}</p>`;
+    // let entity = `<p>${filteredData.data.data[0].attributes.title}</p>`;
+    let entity = `<a href=article.php?${filteredData.data.data[0].id}>${filteredData.data.data[0].attributes.title}</a>`;
     autocomplete.style.border = '1px solid black';
     autocomplete.innerHTML += entity;
   }
